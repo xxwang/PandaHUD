@@ -1,6 +1,6 @@
 //
 //  PandaHUD.swift
-//  panda-todo
+//  PandaHUD
 //
 //  Created by 王斌 on 2023/5/18.
 //
@@ -9,7 +9,7 @@ import Panda
 import UIKit
 
 public class PandaHUD: UIView {
-    fileprivate var viewModel = PandaHUDViewModel()
+    fileprivate var model = PandaHUDModel()
 
     /// 遮罩
     lazy var backgroundView: UIView = {
@@ -61,7 +61,7 @@ public class PandaHUD: UIView {
 public extension PandaHUD {
     /// 当前是否在显示
     static func isVisble() -> Bool {
-        PandaHUD.shared.viewModel.isVisble
+        PandaHUD.shared.model.isVisble
     }
 }
 
@@ -69,52 +69,52 @@ public extension PandaHUD {
 public extension PandaHUD {
     /// 设置成功图片
     static func setSuccessIamge(_ image: UIImage) {
-        PandaHUD.shared.viewModel.successImage = image
+        PandaHUD.shared.model.successImage = image
     }
 
     /// 设置错误图片
     static func setErrorIamge(_ image: UIImage) {
-        PandaHUD.shared.viewModel.errorImage = image
+        PandaHUD.shared.model.errorImage = image
     }
 
     /// 设置信息图片
     static func setInfoIamge(_ image: UIImage) {
-        PandaHUD.shared.viewModel.infoImage = image
+        PandaHUD.shared.model.infoImage = image
     }
 
     /// 设置文字
     static func setText(_ text: String = "") {
-        PandaHUD.shared.viewModel.text = text
+        PandaHUD.shared.model.text = text
     }
 
     /// 设置文字字体
     static func setFont(_ font: UIFont) {
-        PandaHUD.shared.viewModel.font = font
+        PandaHUD.shared.model.font = font
     }
 
     /// 设置前景颜色
     static func setForegroundColor(_ foregroundColor: UIColor) {
-        PandaHUD.shared.viewModel.foregroundColor = foregroundColor
+        PandaHUD.shared.model.foregroundColor = foregroundColor
     }
 
     /// 设置背景景颜色
     static func setBackgroundColor(_ backgroundColor: UIColor) {
-        PandaHUD.shared.viewModel.backgroundColor = backgroundColor
+        PandaHUD.shared.model.backgroundColor = backgroundColor
     }
 
     /// 设置是否显示遮盖
     static func setIsShowMaskView(_ isShowMaskView: Bool) {
-        PandaHUD.shared.viewModel.isShowMaskView = isShowMaskView
+        PandaHUD.shared.model.isShowMaskView = isShowMaskView
     }
 
     /// 设置遮盖颜色
     static func setMaskViewBackgroundColor(_ maskViewBackgroundColor: UIColor) {
-        PandaHUD.shared.viewModel.maskViewBackgroundColor = maskViewBackgroundColor
+        PandaHUD.shared.model.maskViewBackgroundColor = maskViewBackgroundColor
     }
 
     /// 设置状态
     static func setStatus(_ status: PandaHUDStatus) {
-        PandaHUD.shared.viewModel.status = status
+        PandaHUD.shared.model.status = status
     }
 }
 
@@ -122,35 +122,35 @@ private extension PandaHUD {
     /// 设置显示样式
     func setup() {
         // 设置对应状态的图片
-        imageView.image = viewModel.render_image()
+        imageView.image = model.render_image()
         // 如果没有对应图片,隐藏UIImageView
         imageView.isHidden = imageView.image == nil
 
         // 设置文字
-        textLabel.text = viewModel.text
+        textLabel.text = model.text
         // 文字字体
-        textLabel.font = viewModel.font
+        textLabel.font = model.font
         // 文字颜色
-        textLabel.textColor = viewModel.foregroundColor
+        textLabel.textColor = model.foregroundColor
         // 如果文字为空, 隐藏Label
-        textLabel.isHidden = viewModel.text == nil
+        textLabel.isHidden = model.text == nil
 
         // 内容容器背景色
-        contentView.backgroundColor = viewModel.backgroundColor
+        contentView.backgroundColor = model.backgroundColor
 
         // 是否显示遮罩
-        backgroundView.isHidden = !viewModel.isShowMaskView
+        backgroundView.isHidden = !model.isShowMaskView
         // 遮罩背景色
-        backgroundView.backgroundColor = viewModel.maskViewBackgroundColor
+        backgroundView.backgroundColor = model.maskViewBackgroundColor
 
         // 是否显示内容容器
         contentView.isHidden = textLabel.isHidden && imageView.isHidden
     }
 
     /// 重新布局
-    func reLayoutSubviews() {
+    func reloadLayout() {
         // HUD的整体frame
-        frame = viewModel.inView?.bounds ?? .zero
+        frame = model.inView?.bounds ?? .zero
         // 遮罩frame
         backgroundView.frame = bounds
 
@@ -198,15 +198,15 @@ private extension PandaHUD {
 private extension PandaHUD {
     /// 开启定时器
     func startTimer() {
-        viewModel.timer = Timer(timeInterval: viewModel.duration, repeats: false, forMode: .common, block: { [weak self] tm in
+        model.timer = Timer(timeInterval: model.duration, repeats: false, forMode: .common, block: { [weak self] tm in
             self?.stopTimer()
         })
     }
 
     /// 关闭定时器
     @objc func stopTimer() {
-        viewModel.timer?.invalidate()
-        viewModel.timer = nil
+        model.timer?.invalidate()
+        model.timer = nil
         dismiss(animated: true)
     }
 }
@@ -215,15 +215,15 @@ private extension PandaHUD {
 public extension PandaHUD {
     /// 显示HUD
     static func show(with text: String?, in view: UIView?, duration: TimeInterval) {
-        PandaHUD.shared.viewModel.text = text
-        PandaHUD.shared.viewModel.inView = view
-        PandaHUD.shared.viewModel.duration = duration
+        PandaHUD.shared.model.text = text
+        PandaHUD.shared.model.inView = view
+        PandaHUD.shared.model.duration = duration
         PandaHUD.shared.show()
     }
 
     private func show() {
         // 如果当前正在显示,先隐藏再显示
-        if viewModel.isVisble {
+        if model.isVisble {
             dismiss(animated: false)
         }
 
@@ -231,7 +231,7 @@ public extension PandaHUD {
         setup()
 
         // 根据样式重新布局
-        reLayoutSubviews()
+        reloadLayout()
 
         // 添加HUD到当前的Window上
         UIWindow.main?.addSubview(self)
@@ -241,7 +241,7 @@ public extension PandaHUD {
             self.alpha = 1
         } completion: { isFinish in
             // 设置可见状态
-            self.viewModel.isVisble = true
+            self.model.isVisble = true
 
             // 开启定时器
             self.startTimer()
@@ -276,7 +276,7 @@ public extension PandaHUD {
         }
 
         // 设置可见状态
-        viewModel.isVisble = false
+        model.isVisble = false
     }
 }
 
