@@ -18,7 +18,7 @@ let package = Package(
         .package(url: "https://github.com/xxwang/Panda.git", branch: "develop"),
     ],
     targets: [
-        .target(name: "PandaComponents", dependencies: ["Panda"]),
+        .target(name: "PandaComponents", dependencies: ["Panda"], path: "Sources/PandaComponents"),
         .testTarget(name: "PandaComponentsTests", dependencies: ["PandaComponents"]),
     ]
 )
