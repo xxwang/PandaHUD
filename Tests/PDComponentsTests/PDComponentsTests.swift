@@ -1,5 +1,5 @@
-import XCTest
 @testable import PDComponents
+import XCTest
 
 final class PDComponentsTests: XCTestCase {
     func testExample() throws {
