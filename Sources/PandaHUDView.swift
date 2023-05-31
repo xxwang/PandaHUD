@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Panda
 
 class PandaHUDView: UIView {
     /// 数据模型
@@ -61,6 +62,8 @@ extension PandaHUDView {
     }
 
     func layout() {
+        guard let model else {return}
+        
         // 边缘间距
         let edgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         var contentWidth: CGFloat = 0
@@ -91,7 +94,12 @@ extension PandaHUDView {
 
         // 设置容器尺寸及位置
         self.frame = CGRect(origin: .zero, size: contentSize)
-        self.center = model?.inView?.pd_middle ?? .zero
+        if model.status == .toast {
+            self.pd_centerX(model.inView?.pd_middle.x ?? 0)
+            self.pd_maxY(SizeUtils.screenHeight - 50)
+        } else {
+            self.center = model.inView?.pd_middle ?? .zero
+        }
         
         // 更新图片与文字的x坐标
         imageView.pd_centerX = pd_middle.x

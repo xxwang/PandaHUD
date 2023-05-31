@@ -54,9 +54,9 @@ public extension PandaHUD {
     }
 
     /// 底部文字提示
-    static func showToast(with text: String? = nil, in view: UIView? = UIWindow.main, duration: TimeInterval = 1.0) {
+    static func showToast(with text: String? = nil, duration: TimeInterval = 1.0) {
         PandaHUD.setStatus(.toast)
-        show(with: text, in: view, duration: duration)
+        show(with: text, in: nil, duration: duration)
     }
 }
 
@@ -164,8 +164,10 @@ public extension PandaHUD {
         prepareUI()
 
         // 添加HUD到指定view上
-        if let inView = model.inView {
-            self.add2(inView)
+        if model.status == .toast {
+            self.add2(UIWindow.main!)
+        } else {
+            self.add2(model.inView!)
         }
         
         // 动画显示
