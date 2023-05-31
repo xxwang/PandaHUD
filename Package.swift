@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "PandaComponents",
+    name: "PandaHUD",
     platforms: [
         .iOS(.v13),
         .macOS(.v12),
@@ -12,13 +12,12 @@ let package = Package(
         .watchOS(.v5),
     ],
     products: [
-        .library(name: "PandaComponents", targets: ["PandaComponents"]),
+        .library(name: "PandaHUD", targets: ["PandaHUD"]),
     ],
     dependencies: [
         .package(url: "https://github.com/xxwang/Panda.git", branch: "develop"),
     ],
     targets: [
-        .target(name: "PandaComponents", dependencies: ["Panda"], path: "Sources"),
-        .testTarget(name: "PandaComponentsTests", dependencies: ["PandaComponents"]),
+        .target(name: "PandaHUD", dependencies: ["Panda"], path: "Sources"),
     ]
 )
