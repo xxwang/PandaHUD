@@ -149,7 +149,7 @@ public extension PandaHUD {
     /// 显示HUD
     static func show(with text: String?, in view: UIView?, duration: TimeInterval) {
         PandaHUD.shared.model.text = text
-        PandaHUD.shared.model.inView = view
+        PandaHUD.shared.model.inView = view ?? UIWindow.main
         PandaHUD.shared.model.duration = duration
         PandaHUD.shared.show()
     }
@@ -163,9 +163,11 @@ public extension PandaHUD {
         // 设置整体样式
         prepareUI()
 
-        // 添加HUD到当前的Window上
-        UIWindow.main?.addSubview(self)
-
+        // 添加HUD到指定view上
+        if let inView = model.inView {
+            self.add2(inView)
+        }
+        
         // 动画显示
         UIView.animate(withDuration: 0.25) {
             self.alpha = 1
