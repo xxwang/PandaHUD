@@ -70,7 +70,7 @@ extension PandaHUDView {
         var contentHeight: CGFloat = edgeInsets.top
 
         // 图片
-        let imageSize = 46.toCGSize()
+        var imageSize = 50.toCGSize()
         if !imageView.isHidden {
             imageView.frame = CGRect(origin: CGPoint(x: 0, y: edgeInsets.top), size: imageSize)
             contentWidth = imageSize.width

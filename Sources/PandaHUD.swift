@@ -6,6 +6,7 @@ public class PandaHUD: UIView {
     private var model = PandaHUDModel()
     /// 遮罩
     private lazy var pandaMaskView = PandaHUDMaskView()
+    
     /// 内容显示容器
     private lazy var pandaHUDView: PandaHUDView = {
         let view = PandaHUDView()
@@ -177,7 +178,9 @@ public extension PandaHUD {
             // 设置可见状态
             self.model.isVisble = true
             // 开启定时器
-            self.startTimer()
+            DispatchQueue.delay_execute(delay: self.model.duration) {
+                self.dismiss(animated: true)
+            }
         }
     }
 
@@ -210,19 +213,3 @@ public extension PandaHUD {
     }
 }
 
-// MARK: - 定时器
-private extension PandaHUD {
-    /// 开启定时器
-    func startTimer() {
-        model.timer = Timer(timeInterval: model.duration, repeats: false, forMode: .common, block: { [weak self] tm in
-            self?.stopTimer()
-        })
-    }
-
-    /// 关闭定时器
-    @objc func stopTimer() {
-        model.timer?.invalidate()
-        model.timer = nil
-        dismiss(animated: true)
-    }
-}
