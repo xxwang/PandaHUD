@@ -96,7 +96,9 @@ extension PandaHUDView {
         self.frame = CGRect(origin: .zero, size: contentSize)
         if model.status == .toast {
             self.pd_centerX(model.inView?.pd_middle.x ?? 0)
-            self.pd_maxY(SizeUtils.screenHeight - 34 - contentSize.height)
+            self.pd_maxY(SizeUtils.screenHeight - (SizeUtils.indentHeight == 0
+                                                   ? 20
+                                                   : SizeUtils.indentHeight) - contentSize.height)
         } else {
             self.center = model.inView?.pd_middle ?? .zero
         }
