@@ -33,18 +33,20 @@ extension PandaHUDView {
     func setup(model: PandaHUDModel) {
         self.model = model
 
-        // 设置对应状态的图片
-        imageView.image = model.render_image()
         // 如果没有对应图片,隐藏UIImageView
         imageView.isHidden = imageView.image == nil
+        // 设置对应状态的图片
+        imageView.image = model.render_image()
+        
+        // 如果文字为空, 隐藏Label
+        textLabel.isHidden = model.text == nil || model.text == ""
         // 设置文字
         textLabel.text = model.text
         // 文字字体
         textLabel.font = model.font
         // 文字颜色
         textLabel.textColor = model.foregroundColor
-        // 如果文字为空, 隐藏Label
-        textLabel.isHidden = model.text == nil
+        
         // 内容容器背景色
         backgroundColor = model.backgroundColor
         // 是否显示内容容器
