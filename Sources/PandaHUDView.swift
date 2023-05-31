@@ -22,7 +22,6 @@ class PandaHUDView: UIView {
     lazy var textLabel: UILabel = {
         let label = UILabel.default()
             .pd_textAlignment(.center)
-            .pd_adjustsFontSizeToFitWidth(true)
         return label
     }()
 
