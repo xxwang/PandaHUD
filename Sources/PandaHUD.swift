@@ -135,7 +135,7 @@ private extension PandaHUD {
         // 遮罩frame
         pandaMaskView.frame = bounds
         // 更新内容位置及尺寸
-        pandaHUDView.sizeToFit()
+        pandaHUDView.layout()
     }
 }
 
