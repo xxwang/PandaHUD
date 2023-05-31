@@ -80,7 +80,7 @@ extension PandaHUDView {
         // 文字
         if !textLabel.isHidden {
             contentHeight += (imageView.isHidden ? 0 : 10)
-            let textSize = textLabel.textSize()
+            let textSize = textLabel.textSize(SizeUtils.screenWidth)
             textSize.width > contentWidth ? contentWidth = textSize.width : ()
 
             textLabel.frame = CGRect(origin: CGPoint(x: 0, y: contentHeight), size: textSize)
@@ -96,7 +96,7 @@ extension PandaHUDView {
         self.frame = CGRect(origin: .zero, size: contentSize)
         if model.status == .toast {
             self.pd_centerX(model.inView?.pd_middle.x ?? 0)
-            self.pd_maxY(SizeUtils.screenHeight - 50)
+            self.pd_maxY(SizeUtils.screenHeight - 34 - contentSize.height)
         } else {
             self.center = model.inView?.pd_middle ?? .zero
         }
