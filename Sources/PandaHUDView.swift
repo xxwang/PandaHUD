@@ -87,6 +87,7 @@ extension PandaHUDView {
 
         contentWidth += (edgeInsets.left + edgeInsets.right)
         contentHeight += edgeInsets.bottom
+        contentHeight > contentWidth ? contentWidth = contentHeight : ()
         let contentSize = CGSize(width: contentWidth, height: contentHeight)
 
         // 设置容器尺寸
