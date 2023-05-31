@@ -136,7 +136,7 @@ private extension PandaHUD {
         pandaMaskView.frame = bounds
         // 更新内容位置及尺寸
         pandaHUDView.sizeToFit()
-        pandaHUDView.center = center
+        pandaHUDView.center = pd_middle
     }
 }
 
