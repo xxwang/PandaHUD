@@ -34,7 +34,7 @@ extension PandaHUDView {
         self.model = model
 
         // 如果没有对应图片,隐藏UIImageView
-        imageView.isHidden = imageView.image == nil
+        imageView.isHidden = model.render_image() == nil
         // 设置对应状态的图片
         imageView.image = model.render_image()
         
