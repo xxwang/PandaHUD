@@ -27,6 +27,39 @@ public class PandaHUD: UIView {
     }
 }
 
+// MARK: - 便捷方法
+public extension PandaHUD {
+    /// 成功
+    static func showSuccess(with text: String? = nil, in view: UIView? = UIWindow.main, duration: TimeInterval = 1.0) {
+        PandaHUD.setStatus(.success)
+        show(with: text, in: view, duration: duration)
+    }
+
+    /// 错误
+    static func showError(with text: String? = nil, in view: UIView? = UIWindow.main, duration: TimeInterval = 1.0) {
+        PandaHUD.setStatus(.error)
+        show(with: text, in: view, duration: duration)
+    }
+
+    /// 信息
+    static func showInfo(with text: String? = nil, in view: UIView? = UIWindow.main, duration: TimeInterval = 1.0) {
+        PandaHUD.setStatus(.info)
+        show(with: text, in: view, duration: duration)
+    }
+
+    /// 文字
+    static func showText(with text: String? = nil, in view: UIView? = UIWindow.main, duration: TimeInterval = 1.0) {
+        PandaHUD.setStatus(.text)
+        show(with: text, in: view, duration: duration)
+    }
+
+    /// 底部文字提示
+    static func showToast(with text: String? = nil, in view: UIView? = UIWindow.main, duration: TimeInterval = 1.0) {
+        PandaHUD.setStatus(.toast)
+        show(with: text, in: view, duration: duration)
+    }
+}
+
 // MARK: - 设置HUD样式
 public extension PandaHUD {
     /// 设置成功图片
@@ -101,29 +134,13 @@ private extension PandaHUD {
         frame = model.inView?.bounds ?? SizeUtils.screenBounds
         // 遮罩frame
         pandaMaskView.frame = bounds
-        // 更新内容容器中心
+        // 更新内容位置及尺寸
+        pandaHUDView.sizeToFit()
         pandaHUDView.center = center
     }
 }
 
-// MARK: - 定时器
-private extension PandaHUD {
-    /// 开启定时器
-    func startTimer() {
-        model.timer = Timer(timeInterval: model.duration, repeats: false, forMode: .common, block: { [weak self] tm in
-            self?.stopTimer()
-        })
-    }
-
-    /// 关闭定时器
-    @objc func stopTimer() {
-        model.timer?.invalidate()
-        model.timer = nil
-        dismiss(animated: true)
-    }
-}
-
-// MARK: - 操作方法
+// MARK: - 显示/隐藏
 public extension PandaHUD {
     /// 当前是否在显示
     static func isVisble() -> Bool {
@@ -190,35 +207,19 @@ public extension PandaHUD {
     }
 }
 
-// MARK: - 便捷方法
-public extension PandaHUD {
-    /// 成功
-    static func showSuccess(with text: String? = nil, in view: UIView? = UIWindow.main, duration: TimeInterval = 1.0) {
-        PandaHUD.setStatus(.success)
-        show(with: text, in: view, duration: duration)
+// MARK: - 定时器
+private extension PandaHUD {
+    /// 开启定时器
+    func startTimer() {
+        model.timer = Timer(timeInterval: model.duration, repeats: false, forMode: .common, block: { [weak self] tm in
+            self?.stopTimer()
+        })
     }
 
-    /// 错误
-    static func showError(with text: String? = nil, in view: UIView? = UIWindow.main, duration: TimeInterval = 1.0) {
-        PandaHUD.setStatus(.error)
-        show(with: text, in: view, duration: duration)
-    }
-
-    /// 信息
-    static func showInfo(with text: String? = nil, in view: UIView? = UIWindow.main, duration: TimeInterval = 1.0) {
-        PandaHUD.setStatus(.info)
-        show(with: text, in: view, duration: duration)
-    }
-
-    /// 文字
-    static func showText(with text: String? = nil, in view: UIView? = UIWindow.main, duration: TimeInterval = 1.0) {
-        PandaHUD.setStatus(.text)
-        show(with: text, in: view, duration: duration)
-    }
-
-    /// 底部文字提示
-    static func showToast(with text: String? = nil, in view: UIView? = UIWindow.main, duration: TimeInterval = 1.0) {
-        PandaHUD.setStatus(.toast)
-        show(with: text, in: view, duration: duration)
+    /// 关闭定时器
+    @objc func stopTimer() {
+        model.timer?.invalidate()
+        model.timer = nil
+        dismiss(animated: true)
     }
 }
