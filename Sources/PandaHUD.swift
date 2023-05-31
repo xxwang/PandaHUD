@@ -30,8 +30,18 @@ public class PandaHUD: UIView {
 // MARK: - 设置HUD样式
 public extension PandaHUD {
     /// 设置成功图片
-    static func setIconImage(_ image: UIImage) {
-        PandaHUD.shared.model.iconImage = image
+    static func setSuccessImage(_ image: UIImage) {
+        PandaHUD.shared.model.successImage = image
+    }
+    
+    /// 设置错误图片
+    static func setErrorImage(_ image: UIImage) {
+        PandaHUD.shared.model.errorImage = image
+    }
+    
+    /// 设置提示图片
+    static func setInfoImage(_ image: UIImage) {
+        PandaHUD.shared.model.infoImage = image
     }
 
     /// 设置文字

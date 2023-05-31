@@ -23,7 +23,7 @@ extension PandaHUDMaskView {
     func setup(model: PandaHUDModel) {
         self.model = model
         setupBackground()
-        isHidden = !model.isShowMask
+        isHidden = !model.maskVisible
     }
 
     /// 绘制渐变图层
