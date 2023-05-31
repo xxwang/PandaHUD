@@ -94,7 +94,7 @@ extension PandaHUDView {
 
         // 更新图片与文字的x坐标
         imageView.pd_centerX = pd_middle.x
-        textLabel.pd_centerX = pd_middle.y
+        textLabel.pd_centerX = pd_middle.x
 
         return super.sizeThatFits(contentSize)
     }

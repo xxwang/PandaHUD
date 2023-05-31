@@ -18,7 +18,7 @@ public class PandaHUDModel {
     /// 文字
     var text: String?
     /// 字体
-    var font: UIFont = .systemFont(ofSize: 13)
+    var font: UIFont = .systemFont(ofSize: 14)
     /// 前景色
     var foregroundColor: UIColor = .white
     /// 背景色

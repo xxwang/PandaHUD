@@ -66,12 +66,12 @@ public extension PandaHUD {
     static func setSuccessImage(_ image: UIImage) {
         PandaHUD.shared.model.successImage = image
     }
-    
+
     /// 设置错误图片
     static func setErrorImage(_ image: UIImage) {
         PandaHUD.shared.model.errorImage = image
     }
-    
+
     /// 设置提示图片
     static func setInfoImage(_ image: UIImage) {
         PandaHUD.shared.model.infoImage = image
