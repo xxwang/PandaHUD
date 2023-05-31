@@ -95,6 +95,9 @@ extension PandaHUDView {
         // 更新图片与文字的x坐标
         imageView.pd_centerX = pd_middle.x
         textLabel.pd_centerX = pd_middle.x
+        
+        // 设置当前控件的中心位置
+        self.center = model?.inView?.pd_middle ?? .zero
 
         return super.sizeThatFits(contentSize)
     }
