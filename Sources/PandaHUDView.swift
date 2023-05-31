@@ -60,7 +60,7 @@ extension PandaHUDView {
         isHidden = textLabel.isHidden && imageView.isHidden
     }
 
-    override func sizeThatFits(_ size: CGSize) -> CGSize {
+    func layout() {
         // 边缘间距
         let edgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         var contentWidth: CGFloat = 0
@@ -89,16 +89,14 @@ extension PandaHUDView {
         contentHeight > contentWidth ? contentWidth = contentHeight : ()
         let contentSize = CGSize(width: contentWidth, height: contentHeight)
 
-        // 设置容器尺寸
-        frame = CGRect(origin: .zero, size: contentSize)
-
+        // 设置容器尺寸及位置
+        self.frame = CGRect(origin: .zero, size: contentSize)
+        self.center = model?.inView?.pd_middle ?? .zero
+        
         // 更新图片与文字的x坐标
         imageView.pd_centerX = pd_middle.x
         textLabel.pd_centerX = pd_middle.x
         
-        // 设置当前控件的中心位置
-        self.center = model?.inView?.pd_middle ?? .zero
-
-        return super.sizeThatFits(contentSize)
     }
+
 }
