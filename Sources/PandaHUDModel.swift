@@ -1,10 +1,3 @@
-//
-//  PandaHUDStyle.swift
-//
-//
-//  Created by 王斌 on 2023/5/18.
-//
-
 import UIKit
 
 public class PandaHUDModel {
@@ -31,9 +24,9 @@ public class PandaHUDModel {
     /// 背景色
     var backgroundColor: UIColor = .black.alpha(0.8)
     /// 是否显示遮罩
-    var isShowMaskView: Bool = true
+    var maskVisible: Bool = true
     /// 遮罩背景色
-    var maskViewBackgroundColor: UIColor = .black.alpha(0.25)
+    var maskColor: UIColor = .black.alpha(0.25)
     /// 显示持续时长
     var duration: TimeInterval = 1.5
 }
@@ -49,7 +42,7 @@ public extension PandaHUDModel {
             image = errorImage
         case .info:
             image = infoImage
-        case .text:
+        default:
             break
         }
         return image?.withTintColor(foregroundColor, renderingMode: .alwaysOriginal)

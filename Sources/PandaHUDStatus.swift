@@ -1,20 +1,12 @@
-//
-//  PandaHUDStatus.swift
-//
-//
-//  Created by 王斌 on 2023/5/29.
-//
-
-import UIKit
+import Foundation
 
 /// HUD状态
 public enum PandaHUDStatus {
-    /// 成功
-    case success
-    /// 错误
-    case error
-    /// 信息
-    case info
-    /// 文字
-    case text
+    case success // 成功
+    case error // 错误
+    case info // 信息
+    case text // 文字
+    case toast // 底部弹出文字提示
+    case loading // 加载中
+    case progress // 进度
 }

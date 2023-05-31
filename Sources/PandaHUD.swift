@@ -1,54 +1,24 @@
-//
-//  PandaHUD.swift
-//  PandaHUD
-//
-//  Created by 王斌 on 2023/5/18.
-//
-
 import Panda
 import UIKit
 
 public class PandaHUD: UIView {
-    fileprivate var model = PandaHUDModel()
-
+    /// 数据模型
+    private var model = PandaHUDModel()
     /// 遮罩
-    lazy var backgroundView: UIView = {
-        let view = UIView()
+    private lazy var pandaMaskView = PandaHUDMaskView()
+    /// 内容显示容器
+    private lazy var pandaHUDView: PandaHUDView = {
+        let view = PandaHUDView()
+            .pd_cornerRadius(4)
+            .pd_masksToBounds(true)
         return view
-    }()
-
-    /// 内容容器
-    lazy var contentView: UIView = {
-        let view = UIView()
-        view.layer.cornerRadius = 4
-        view.layer.masksToBounds = true
-        return view
-    }()
-
-    /// 图标
-    lazy var imageView: UIImageView = {
-        let imageView = UIImageView()
-        return imageView
-    }()
-
-    /// 文字
-    lazy var textLabel: UILabel = {
-        let label = UILabel()
-        label.adjustsFontSizeToFitWidth = true
-        return label
     }()
 
     public static let shared = PandaHUD()
-
     override private init(frame: CGRect = .zero) {
         super.init(frame: frame)
-        alpha = 0.01
-
-        addSubview(backgroundView)
-        addSubview(contentView)
-
-        contentView.addSubview(imageView)
-        contentView.addSubview(textLabel)
+        pandaMaskView.add2(self)
+        pandaHUDView.add2(self)
     }
 
     @available(*, unavailable)
@@ -59,27 +29,9 @@ public class PandaHUD: UIView {
 
 // MARK: - 设置HUD样式
 public extension PandaHUD {
-    /// 当前是否在显示
-    static func isVisble() -> Bool {
-        PandaHUD.shared.model.isVisble
-    }
-}
-
-// MARK: - 设置HUD样式
-public extension PandaHUD {
     /// 设置成功图片
-    static func setSuccessIamge(_ image: UIImage) {
-        PandaHUD.shared.model.successImage = image
-    }
-
-    /// 设置错误图片
-    static func setErrorIamge(_ image: UIImage) {
-        PandaHUD.shared.model.errorImage = image
-    }
-
-    /// 设置信息图片
-    static func setInfoIamge(_ image: UIImage) {
-        PandaHUD.shared.model.infoImage = image
+    static func setIconImage(_ image: UIImage) {
+        PandaHUD.shared.model.iconImage = image
     }
 
     /// 设置文字
@@ -103,13 +55,13 @@ public extension PandaHUD {
     }
 
     /// 设置是否显示遮盖
-    static func setIsShowMaskView(_ isShowMaskView: Bool) {
-        PandaHUD.shared.model.isShowMaskView = isShowMaskView
+    static func setMaskVisible(_ maskVisible: Bool) {
+        PandaHUD.shared.model.maskVisible = maskVisible
     }
 
     /// 设置遮盖颜色
-    static func setMaskViewBackgroundColor(_ maskViewBackgroundColor: UIColor) {
-        PandaHUD.shared.model.maskViewBackgroundColor = maskViewBackgroundColor
+    static func setMaskColor(_ maskColor: UIColor) {
+        PandaHUD.shared.model.maskColor = maskColor
     }
 
     /// 设置状态
@@ -120,77 +72,27 @@ public extension PandaHUD {
 
 private extension PandaHUD {
     /// 设置显示样式
-    func setup() {
-        // 设置对应状态的图片
-        imageView.image = model.render_image()
-        // 如果没有对应图片,隐藏UIImageView
-        imageView.isHidden = imageView.image == nil
+    func prepareUI() {
+        // 遮罩
+        pandaMaskView.setup(model: model)
+        // 内容容器
+        pandaHUDView.setup(model: model)
 
-        // 设置文字
-        textLabel.text = model.text
-        // 文字字体
-        textLabel.font = model.font
-        // 文字颜色
-        textLabel.textColor = model.foregroundColor
-        // 如果文字为空, 隐藏Label
-        textLabel.isHidden = model.text == nil
+        // 根据样式重新布局
+        reloadLayout()
 
-        // 内容容器背景色
-        contentView.backgroundColor = model.backgroundColor
-
-        // 是否显示遮罩
-        backgroundView.isHidden = !model.isShowMaskView
-        // 遮罩背景色
-        backgroundView.backgroundColor = model.maskViewBackgroundColor
-
-        // 是否显示内容容器
-        contentView.isHidden = textLabel.isHidden && imageView.isHidden
+        // 设置透明
+        alpha = 0.01
     }
 
     /// 重新布局
     func reloadLayout() {
         // HUD的整体frame
-        frame = model.inView?.bounds ?? .zero
+        frame = model.inView?.bounds ?? SizeUtils.screenBounds
         // 遮罩frame
-        backgroundView.frame = bounds
-
-        // 间距
-        let margin: CGFloat = 10
-        // 顶部间距
-        var top: CGFloat = margin
-        // 图片Size
-        let imageSize = 46.toCGSize()
-
-        if !imageView.isHidden {
-            imageView.frame = CGRect(origin: CGPoint(x: 0, y: top), size: imageSize)
-            top += imageSize.height
-        }
-
-        // 容器宽度
-        var contentWidth: CGFloat = imageSize.width + margin * 2
-        if !textLabel.isHidden {
-            // 与图标之间的间距
-            let topMargin: CGFloat = (imageView.isHidden ? 0 : margin)
-            // 文字尺寸
-            let textSize = textLabel.textSize()
-            // 计算容器宽度
-            textSize.width > contentWidth ? contentWidth = (textSize.width + margin * 2) : ()
-
-            textLabel.frame = CGRect(origin: CGPoint(x: 0, y: top + topMargin), size: textSize)
-            top += (textSize.height + topMargin)
-        }
-
-        // 容器高度
-        let contentHeight: CGFloat = top + margin
-        // 如果容器高度大于容器的宽度, 就调整为一样(为了显示美观)
-        contentHeight > contentWidth ? contentWidth = contentHeight : ()
-
-        // 设置容器尺寸
-        contentView.frame = CGRect(center: backgroundView.center, size: CGSize(width: contentWidth, height: contentHeight))
-
-        // 更新图片与文字的x坐标
-        imageView.pd_centerX = contentView.pd_width / 2
-        textLabel.pd_centerX = contentView.pd_width / 2
+        pandaMaskView.frame = bounds
+        // 更新内容容器中心
+        pandaHUDView.center = center
     }
 }
 
@@ -213,6 +115,11 @@ private extension PandaHUD {
 
 // MARK: - 操作方法
 public extension PandaHUD {
+    /// 当前是否在显示
+    static func isVisble() -> Bool {
+        PandaHUD.shared.model.isVisble
+    }
+
     /// 显示HUD
     static func show(with text: String?, in view: UIView?, duration: TimeInterval) {
         PandaHUD.shared.model.text = text
@@ -228,10 +135,7 @@ public extension PandaHUD {
         }
 
         // 设置整体样式
-        setup()
-
-        // 根据样式重新布局
-        reloadLayout()
+        prepareUI()
 
         // 添加HUD到当前的Window上
         UIWindow.main?.addSubview(self)
@@ -242,7 +146,6 @@ public extension PandaHUD {
         } completion: { isFinish in
             // 设置可见状态
             self.model.isVisble = true
-
             // 开启定时器
             self.startTimer()
         }
@@ -258,7 +161,6 @@ public extension PandaHUD {
             UIView.animate(withDuration: 0.25) {
                 // 透明
                 self.alpha = 0.01
-
             } completion: { isFinish in
                 // 如果HUD正在window上,那么从window上移除
                 if self.superview != nil {
@@ -268,13 +170,11 @@ public extension PandaHUD {
         } else {
             // 透明
             alpha = 0.01
-
             // 如果HUD正在window上,那么从window上移除
             if superview != nil {
                 removeFromSuperview()
             }
         }
-
         // 设置可见状态
         model.isVisble = false
     }
@@ -303,6 +203,12 @@ public extension PandaHUD {
     /// 文字
     static func showText(with text: String? = nil, in view: UIView? = UIWindow.main, duration: TimeInterval = 1.0) {
         PandaHUD.setStatus(.text)
+        show(with: text, in: view, duration: duration)
+    }
+
+    /// 底部文字提示
+    static func showToast(with text: String? = nil, in view: UIView? = UIWindow.main, duration: TimeInterval = 1.0) {
+        PandaHUD.setStatus(.toast)
         show(with: text, in: view, duration: duration)
     }
 }
