@@ -32,6 +32,7 @@ extension PandaHUDMaskView {
         background?.removeFromSuperlayer()
 
         // 镜像渐变
+        let frame = model.inView?.bounds ?? SizeUtils.screenBounds
         background = CAGradientLayer(frame,
                                      colors: [model.maskColor.alpha(0.3),
                                               model.maskColor],
