@@ -11,20 +11,10 @@ import Panda
 class PandaHUDView: UIView {
     /// 数据模型
     var model: PandaHUDModel?
-
     /// 图标
-    lazy var imageView: UIImageView = {
-        let imageView = UIImageView.default()
-            .pd_contentMode(.scaleAspectFill)
-        return imageView
-    }()
-
+    lazy var imageView = UIImageView.default().pd_contentMode(.scaleAspectFill)
     /// 文字
-    lazy var textLabel: UILabel = {
-        let label = UILabel.default()
-            .pd_textAlignment(.center)
-        return label
-    }()
+    lazy var textLabel = UILabel.default().pd_textAlignment(.center)
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -70,7 +60,7 @@ extension PandaHUDView {
         var contentHeight: CGFloat = edgeInsets.top
 
         // 图片
-        var imageSize = 50.toCGSize()
+        let imageSize = 50.toCGSize()
         if !imageView.isHidden {
             imageView.frame = CGRect(origin: CGPoint(x: 0, y: edgeInsets.top), size: imageSize)
             contentWidth = imageSize.width
@@ -82,7 +72,6 @@ extension PandaHUDView {
             contentHeight += (imageView.isHidden ? 0 : 10)
             let textSize = textLabel.textSize(SizeUtils.screenWidth)
             textSize.width > contentWidth ? contentWidth = textSize.width : ()
-
             textLabel.frame = CGRect(origin: CGPoint(x: 0, y: contentHeight), size: textSize)
             contentHeight += textSize.height
         }
