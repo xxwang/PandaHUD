@@ -2,7 +2,7 @@ import UIKit
 
 public class PandaHUDModel {
     /// 显示在哪个view
-    var inView: UIView?
+    var inView: UIView? = UIWindow.main
     /// 显示的持续时长定时器
     var timer: Timer?
     /// 当前是否在显示
