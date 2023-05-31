@@ -5,8 +5,8 @@
 //  Created by 王斌 on 2023/5/31.
 //
 
-import UIKit
 import Panda
+import UIKit
 
 class PandaHUDView: UIView {
     /// 数据模型
@@ -37,7 +37,7 @@ extension PandaHUDView {
         imageView.isHidden = model.render_image() == nil
         // 设置对应状态的图片
         imageView.image = model.render_image()
-        
+
         // 如果文字为空, 隐藏Label
         textLabel.isHidden = model.text == nil || model.text == ""
         // 设置文字
@@ -46,7 +46,7 @@ extension PandaHUDView {
         textLabel.font = model.font
         // 文字颜色
         textLabel.textColor = model.foregroundColor
-        
+
         // 内容容器背景色
         backgroundColor = model.backgroundColor
         // 是否显示内容容器
@@ -54,8 +54,8 @@ extension PandaHUDView {
     }
 
     func layout() {
-        guard let model else {return}
-        
+        guard let model else { return }
+
         // 边缘间距
         let edgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         var contentWidth: CGFloat = 0
@@ -84,20 +84,18 @@ extension PandaHUDView {
         let contentSize = CGSize(width: contentWidth, height: contentHeight)
 
         // 设置容器尺寸及位置
-        self.frame = CGRect(origin: .zero, size: contentSize)
+        frame = CGRect(origin: .zero, size: contentSize)
         if model.status == .toast {
-            self.pd_centerX(model.inView?.pd_middle.x ?? 0)
-            self.pd_maxY(SizeUtils.screenHeight - (SizeUtils.indentHeight == 0
-                                                   ? 20
-                                                   : SizeUtils.indentHeight) - contentSize.height)
+            pd_centerX(model.inView?.pd_middle.x ?? 0)
+            pd_maxY(SizeUtils.screenHeight - (SizeUtils.indentHeight == 0
+                    ? 20
+                    : SizeUtils.indentHeight) - contentSize.height)
         } else {
-            self.center = model.inView?.pd_middle ?? .zero
+            center = model.inView?.pd_middle ?? .zero
         }
-        
+
         // 更新图片与文字的x坐标
         imageView.pd_centerX = pd_middle.x
         textLabel.pd_centerX = pd_middle.x
-        
     }
-
 }

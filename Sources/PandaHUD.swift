@@ -6,7 +6,7 @@ public class PandaHUD: UIView {
     private var model = PandaHUDModel()
     /// 遮罩
     private lazy var pandaMaskView = PandaHUDMaskView()
-    
+
     /// 内容显示容器
     private lazy var pandaHUDView: PandaHUDView = {
         let view = PandaHUDView()
@@ -54,10 +54,25 @@ public extension PandaHUD {
         show(with: text, in: view, duration: duration)
     }
 
-    /// 底部文字提示
+    /// toast样式
     static func showToast(with text: String? = nil, duration: TimeInterval = 1.0) {
         PandaHUD.setStatus(.toast)
         show(with: text, in: nil, duration: duration)
+    }
+
+    /// loading
+    static func showLoading(with text: String? = nil, in view: UIView? = UIWindow.main) {
+        PandaHUD.setStatus(.loading)
+        show(with: text, in: view, duration: 0)
+    }
+
+    /// progress
+    static func showProgress(with text: String? = nil, in view: UIView? = UIWindow.main, progress: CGFloat) {
+        if isVisble(), PandaHUD.shared.model.status == .progress {
+            // 处理字符串和进度值
+        }
+        PandaHUD.setStatus(.progress)
+        show(with: text, in: view, duration: 0)
     }
 }
 
@@ -149,13 +164,19 @@ public extension PandaHUD {
 
     /// 显示HUD
     static func show(with text: String?, in view: UIView?, duration: TimeInterval) {
-        PandaHUD.shared.model.text = text
-        PandaHUD.shared.model.inView = view ?? UIWindow.main
-        PandaHUD.shared.model.duration = duration
-        PandaHUD.shared.show()
+        PandaHUD.shared.show(with: text, in: view, duration: duration)
     }
 
-    private func show() {
+    /// 隐藏HUD
+    static func dismiss(animated: Bool = true) {
+        PandaHUD.shared.dismiss(animated: animated)
+    }
+
+    private func show(with text: String?, in view: UIView?, duration: TimeInterval) {
+        model.text = text
+        model.inView = view ?? UIWindow.main
+        model.duration = duration
+
         // 如果当前正在显示,先隐藏再显示
         if model.isVisble {
             dismiss(animated: false)
@@ -166,27 +187,25 @@ public extension PandaHUD {
 
         // 添加HUD到指定view上
         if model.status == .toast {
-            self.add2(UIWindow.main!)
+            add2(UIWindow.main!)
         } else {
-            self.add2(model.inView!)
+            add2(model.inView!)
         }
-        
+
         // 动画显示
         UIView.animate(withDuration: 0.25) {
             self.alpha = 1
         } completion: { isFinish in
             // 设置可见状态
             self.model.isVisble = true
-            // 开启定时器
-            DispatchQueue.delay_execute(delay: self.model.duration) {
-                self.dismiss(animated: true)
+
+            if self.model.status != .loading, self.model.status != .progress {
+                // 开启定时器
+                DispatchQueue.delay_execute(delay: self.model.duration) {
+                    self.dismiss(animated: true)
+                }
             }
         }
-    }
-
-    /// 隐藏HUD
-    static func dismiss() {
-        PandaHUD.shared.dismiss(animated: true)
     }
 
     private func dismiss(animated: Bool) {
@@ -212,4 +231,3 @@ public extension PandaHUD {
         model.isVisble = false
     }
 }
-
