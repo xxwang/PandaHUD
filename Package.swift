@@ -18,6 +18,6 @@ let package = Package(
         .package(url: "https://gitee.com/zenwb/Panda.git", branch: "develop"),
     ],
     targets: [
-        .target(name: "PandaHUD", dependencies: ["Panda"], path: "Sources"),
+        .target(name: "PandaHUD", dependencies: ["Panda"], path: "PandaHUD"),
     ]
 )

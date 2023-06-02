@@ -8,10 +8,8 @@
 import UIKit
 
 class PandaAnimationView: UIImageView {
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
-
     }
 
     @available(*, unavailable)
@@ -20,24 +18,16 @@ class PandaAnimationView: UIImageView {
     }
 }
 
-//MARK: - loading
+// MARK: - loading
 extension PandaAnimationView {
     /// 开始动画
-    func startAnimation() {
-        
-    }
-    
+    func startAnimation() {}
+
     /// 停止动画
-    func stopAnimation() {
-        
-    }
-    
-    func drawShape() {
-        
-    }
+    func stopAnimation() {}
+
+    func drawShape() {}
 }
 
-//MARK: - progress
-extension PandaAnimationView {
-    
-}
+// MARK: - progress
+extension PandaAnimationView {}

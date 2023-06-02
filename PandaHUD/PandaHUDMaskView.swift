@@ -34,12 +34,12 @@ extension PandaHUDMaskView {
         // 镜像渐变
         let frame = model.inView?.bounds ?? SizeUtils.screenBounds
         backgroundGradientLayer = CAGradientLayer(frame,
-                                     colors: [model.maskColor.alpha(0.3),
-                                              model.maskColor],
-                                     locations: [0, 1],
-                                     start: CGPoint(x: 0.5, y: 0.5),
-                                     end: CGPoint(x: 1, y: 1),
-                                     type: .radial)
+                                                  colors: [model.maskColor.alpha(0.3),
+                                                           model.maskColor],
+                                                  locations: [0, 1],
+                                                  start: CGPoint(x: 0.5, y: 0.5),
+                                                  end: CGPoint(x: 1, y: 1),
+                                                  type: .radial)
         layer.addSublayer(backgroundGradientLayer!)
     }
 }
