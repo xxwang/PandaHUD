@@ -8,7 +8,7 @@ public class PandaHUD: UIView {
     private lazy var pandaMaskView = PandaHUDMaskView()
 
     /// 内容显示容器
-    private lazy var pandaHUDView: PandaHUDView = {
+    private lazy var hudView: PandaHUDView = {
         let view = PandaHUDView()
             .pd_cornerRadius(4)
             .pd_masksToBounds(true)
@@ -19,60 +19,12 @@ public class PandaHUD: UIView {
     override private init(frame: CGRect = .zero) {
         super.init(frame: frame)
         pandaMaskView.add2(self)
-        pandaHUDView.add2(self)
+        hudView.add2(self)
     }
 
     @available(*, unavailable)
     internal required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-}
-
-// MARK: - 便捷方法
-public extension PandaHUD {
-    /// 成功
-    static func showSuccess(with text: String? = nil, in view: UIView? = UIWindow.main, duration: TimeInterval = 1.0) {
-        PandaHUD.setStatus(.success)
-        show(with: text, in: view, duration: duration)
-    }
-
-    /// 错误
-    static func showError(with text: String? = nil, in view: UIView? = UIWindow.main, duration: TimeInterval = 1.0) {
-        PandaHUD.setStatus(.error)
-        show(with: text, in: view, duration: duration)
-    }
-
-    /// 信息
-    static func showInfo(with text: String? = nil, in view: UIView? = UIWindow.main, duration: TimeInterval = 1.0) {
-        PandaHUD.setStatus(.info)
-        show(with: text, in: view, duration: duration)
-    }
-
-    /// 文字
-    static func showText(with text: String? = nil, in view: UIView? = UIWindow.main, duration: TimeInterval = 1.0) {
-        PandaHUD.setStatus(.text)
-        show(with: text, in: view, duration: duration)
-    }
-
-    /// toast样式
-    static func showToast(with text: String? = nil, duration: TimeInterval = 1.0) {
-        PandaHUD.setStatus(.toast)
-        show(with: text, in: nil, duration: duration)
-    }
-
-    /// loading
-    static func showLoading(with text: String? = nil, in view: UIView? = UIWindow.main) {
-        PandaHUD.setStatus(.loading)
-        show(with: text, in: view, duration: 0)
-    }
-
-    /// progress
-    static func showProgress(with text: String? = nil, in view: UIView? = UIWindow.main, progress: CGFloat) {
-        if isVisble(), PandaHUD.shared.model.status == .progress {
-            // 处理字符串和进度值
-        }
-        PandaHUD.setStatus(.progress)
-        show(with: text, in: view, duration: 0)
     }
 }
 
@@ -129,14 +81,61 @@ public extension PandaHUD {
     }
 }
 
+// MARK: - 便捷方法
+public extension PandaHUD {
+    /// 成功
+    static func showSuccess(with text: String? = nil, in view: UIView? = UIWindow.main, duration: TimeInterval = 1.0) {
+        PandaHUD.setStatus(.success)
+        show(with: text, in: view, duration: duration)
+    }
+
+    /// 错误
+    static func showError(with text: String? = nil, in view: UIView? = UIWindow.main, duration: TimeInterval = 1.0) {
+        PandaHUD.setStatus(.error)
+        show(with: text, in: view, duration: duration)
+    }
+
+    /// 信息
+    static func showInfo(with text: String? = nil, in view: UIView? = UIWindow.main, duration: TimeInterval = 1.0) {
+        PandaHUD.setStatus(.info)
+        show(with: text, in: view, duration: duration)
+    }
+
+    /// 文字
+    static func showText(with text: String? = nil, in view: UIView? = UIWindow.main, duration: TimeInterval = 1.0) {
+        PandaHUD.setStatus(.text)
+        show(with: text, in: view, duration: duration)
+    }
+
+    /// toast样式
+    static func showToast(with text: String? = nil, duration: TimeInterval = 1.0) {
+        PandaHUD.setStatus(.toast)
+        show(with: text, in: nil, duration: duration)
+    }
+
+    /// loading
+    static func showLoading(with text: String? = nil, in view: UIView? = UIWindow.main) {
+        PandaHUD.setStatus(.loading)
+        show(with: text, in: view, duration: 0)
+    }
+
+    /// progress
+    static func showProgress(with text: String? = nil, in view: UIView? = UIWindow.main, progress: CGFloat) {
+        if isVisble(), PandaHUD.shared.model.status == .progress {
+            // 处理字符串和进度值
+        }
+        PandaHUD.setStatus(.progress)
+        show(with: text, in: view, duration: 0)
+    }
+}
+
 private extension PandaHUD {
     /// 设置显示样式
     func prepareUI() {
         // 遮罩
         pandaMaskView.setup(model: model)
         // 内容容器
-        pandaHUDView.setup(model: model)
-
+        hudView.setup(model: model)
         // 根据样式重新布局
         reloadLayout()
 
@@ -151,7 +150,7 @@ private extension PandaHUD {
         // 遮罩frame
         pandaMaskView.frame = bounds
         // 更新内容位置及尺寸
-        pandaHUDView.layout()
+        hudView.layout()
     }
 }
 

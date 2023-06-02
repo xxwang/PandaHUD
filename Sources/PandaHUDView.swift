@@ -8,19 +8,24 @@
 import Panda
 import UIKit
 
+
+/// 图片大小
+let kImageSize = 50.toCGSize()
+
 class PandaHUDView: UIView {
     /// 数据模型
     var model: PandaHUDModel?
     /// 图标
-    lazy var imageView = UIImageView.default().pd_contentMode(.scaleAspectFill)
+    lazy var animationView = PandaAnimationView(frame: CGRect(origin: .zero, size: kImageSize))
+        .pd_contentMode(.scaleAspectFill)
     /// 文字
-    lazy var textLabel = UILabel.default().pd_textAlignment(.center)
+    lazy var tipLabel = UILabel.default().pd_textAlignment(.center)
 
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        imageView.add2(self)
-        textLabel.add2(self)
+        animationView.add2(self)
+        tipLabel.add2(self)
     }
 
     @available(*, unavailable)
@@ -33,24 +38,24 @@ extension PandaHUDView {
     func setup(model: PandaHUDModel) {
         self.model = model
 
-        // 如果没有对应图片,隐藏UIImageView
-        imageView.isHidden = model.render_image() == nil
+        // 如果没有对应图片,隐藏UIanimationView
+        animationView.isHidden = model.render_image() == nil
         // 设置对应状态的图片
-        imageView.image = model.render_image()
+        animationView.image = model.render_image()
 
         // 如果文字为空, 隐藏Label
-        textLabel.isHidden = model.text == nil || model.text == ""
+        tipLabel.isHidden = model.text == nil || model.text == ""
         // 设置文字
-        textLabel.text = model.text
+        tipLabel.text = model.text
         // 文字字体
-        textLabel.font = model.font
+        tipLabel.font = model.font
         // 文字颜色
-        textLabel.textColor = model.foregroundColor
+        tipLabel.textColor = model.foregroundColor
 
         // 内容容器背景色
         backgroundColor = model.backgroundColor
         // 是否显示内容容器
-        isHidden = textLabel.isHidden && imageView.isHidden
+        isHidden = tipLabel.isHidden && animationView.isHidden
     }
 
     func layout() {
@@ -62,19 +67,18 @@ extension PandaHUDView {
         var contentHeight: CGFloat = edgeInsets.top
 
         // 图片
-        let imageSize = 50.toCGSize()
-        if !imageView.isHidden {
-            imageView.frame = CGRect(origin: CGPoint(x: 0, y: edgeInsets.top), size: imageSize)
-            contentWidth = imageSize.width
-            contentHeight += imageSize.height
+        if !animationView.isHidden {
+            animationView.frame = CGRect(origin: CGPoint(x: 0, y: edgeInsets.top), size: kImageSize)
+            contentWidth = kImageSize.width
+            contentHeight += kImageSize.height
         }
 
         // 文字
-        if !textLabel.isHidden {
-            contentHeight += (imageView.isHidden ? 0 : 10)
-            let textSize = textLabel.textSize(SizeUtils.screenWidth)
+        if !tipLabel.isHidden {
+            contentHeight += (animationView.isHidden ? 0 : 10)
+            let textSize = tipLabel.textSize(SizeUtils.screenWidth)
             textSize.width > contentWidth ? contentWidth = textSize.width : ()
-            textLabel.frame = CGRect(origin: CGPoint(x: 0, y: contentHeight), size: textSize)
+            tipLabel.frame = CGRect(origin: CGPoint(x: 0, y: contentHeight), size: textSize)
             contentHeight += textSize.height
         }
 
@@ -95,7 +99,7 @@ extension PandaHUDView {
         }
 
         // 更新图片与文字的x坐标
-        imageView.pd_centerX = pd_middle.x
-        textLabel.pd_centerX = pd_middle.x
+        animationView.pd_centerX = pd_middle.x
+        tipLabel.pd_centerX = pd_middle.x
     }
 }

@@ -7,16 +7,37 @@
 
 import UIKit
 
-class PandaAnimationView: UIView {
+class PandaAnimationView: UIImageView {
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        // loading
-        // progress
     }
 
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+//MARK: - loading
+extension PandaAnimationView {
+    /// 开始动画
+    func startAnimation() {
+        
+    }
+    
+    /// 停止动画
+    func stopAnimation() {
+        
+    }
+    
+    func drawShape() {
+        
+    }
+}
+
+//MARK: - progress
+extension PandaAnimationView {
+    
 }
