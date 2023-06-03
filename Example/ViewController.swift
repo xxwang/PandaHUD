@@ -13,9 +13,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        PandaHUD.showLoading(with: "123...")
+        
     }
 
-
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        PandaHUD.showLoading(with: "123...")
+        PandaHUD.showToast(with: "123123123123")
+    }
 }
 
