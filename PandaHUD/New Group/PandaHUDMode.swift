@@ -1,7 +1,7 @@
 import Foundation
 
 /// HUD状态
-public enum PandaHUDStatus {
+public enum PandaHUDMode {
     case success // 成功
     case error // 错误
     case info // 信息

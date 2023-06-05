@@ -11,7 +11,7 @@ import UIKit
 /// 图片大小
 let kImageSize = 50.toCGSize()
 
-class PandaHUDView: UIView {
+class PandaHUDView1: UIView {
     /// 数据模型
     var model: PandaHUDModel?
     /// 图标
@@ -33,7 +33,7 @@ class PandaHUDView: UIView {
     }
 }
 
-extension PandaHUDView {
+extension PandaHUDView1 {
     func setup(model: PandaHUDModel) {
         self.model = model
 
