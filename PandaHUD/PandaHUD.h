@@ -15,4 +15,3 @@ FOUNDATION_EXPORT const unsigned char PandaHUDVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <PandaHUD/PublicHeader.h>
 
-

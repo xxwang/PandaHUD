@@ -11,6 +11,15 @@
 		6253AECC2A2E2332002361BA /* PandaHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6253AECB2A2E2331002361BA /* PandaHUD.swift */; };
 		6253AED02A2E266E002361BA /* PandaHUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6253AECF2A2E266E002361BA /* PandaHUDView.swift */; };
 		6253AED22A2E2A4C002361BA /* PandaHUDData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6253AED12A2E2A4C002361BA /* PandaHUDData.swift */; };
+		6253AED52A2F82C0002361BA /* SuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6253AED42A2F82C0002361BA /* SuccessView.swift */; };
+		6253AED72A2F82CB002361BA /* PandaHUDErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6253AED62A2F82CB002361BA /* PandaHUDErrorView.swift */; };
+		6253AED92A2F82FA002361BA /* PandaHUDLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6253AED82A2F82FA002361BA /* PandaHUDLoadingView.swift */; };
+		6253AEDB2A2F8309002361BA /* PandaHUDProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6253AEDA2A2F8309002361BA /* PandaHUDProgressView.swift */; };
+		6253AEDD2A2F8319002361BA /* PandaHUDTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6253AEDC2A2F8319002361BA /* PandaHUDTextView.swift */; };
+		6253AEDF2A2F839C002361BA /* PandaHUDInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6253AEDE2A2F839C002361BA /* PandaHUDInfoView.swift */; };
+		6253AEE12A2F83A6002361BA /* PandaHUDToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6253AEE02A2F83A6002361BA /* PandaHUDToastView.swift */; };
+		6253AEE32A2F83F2002361BA /* PandaHUDWidgeBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6253AEE22A2F83F2002361BA /* PandaHUDWidgeBaseView.swift */; };
+		6253AEE52A2F8481002361BA /* PDHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6253AEE42A2F8481002361BA /* PDHUD.swift */; };
 		62E3E7A72A2A6E7A00043401 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E3E7A62A2A6E7A00043401 /* AppDelegate.swift */; };
 		62E3E7A92A2A6E7A00043401 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E3E7A82A2A6E7A00043401 /* SceneDelegate.swift */; };
 		62E3E7AB2A2A6E7A00043401 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E3E7AA2A2A6E7A00043401 /* ViewController.swift */; };
@@ -56,6 +65,15 @@
 		6253AECB2A2E2331002361BA /* PandaHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandaHUD.swift; sourceTree = "<group>"; };
 		6253AECF2A2E266E002361BA /* PandaHUDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandaHUDView.swift; sourceTree = "<group>"; };
 		6253AED12A2E2A4C002361BA /* PandaHUDData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandaHUDData.swift; sourceTree = "<group>"; };
+		6253AED42A2F82C0002361BA /* SuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessView.swift; sourceTree = "<group>"; };
+		6253AED62A2F82CB002361BA /* PandaHUDErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandaHUDErrorView.swift; sourceTree = "<group>"; };
+		6253AED82A2F82FA002361BA /* PandaHUDLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandaHUDLoadingView.swift; sourceTree = "<group>"; };
+		6253AEDA2A2F8309002361BA /* PandaHUDProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandaHUDProgressView.swift; sourceTree = "<group>"; };
+		6253AEDC2A2F8319002361BA /* PandaHUDTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandaHUDTextView.swift; sourceTree = "<group>"; };
+		6253AEDE2A2F839C002361BA /* PandaHUDInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandaHUDInfoView.swift; sourceTree = "<group>"; };
+		6253AEE02A2F83A6002361BA /* PandaHUDToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandaHUDToastView.swift; sourceTree = "<group>"; };
+		6253AEE22A2F83F2002361BA /* PandaHUDWidgeBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandaHUDWidgeBaseView.swift; sourceTree = "<group>"; };
+		6253AEE42A2F8481002361BA /* PDHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDHUD.swift; sourceTree = "<group>"; };
 		62E3E7A42A2A6E7A00043401 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62E3E7A62A2A6E7A00043401 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		62E3E7A82A2A6E7A00043401 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +118,7 @@
 		6253AECA2A2E2323002361BA /* New Group */ = {
 			isa = PBXGroup;
 			children = (
+				6253AED32A2F82A2002361BA /* Content Views */,
 				6253AECB2A2E2331002361BA /* PandaHUD.swift */,
 				6253AED12A2E2A4C002361BA /* PandaHUDData.swift */,
 				6253AECF2A2E266E002361BA /* PandaHUDView.swift */,
@@ -107,6 +126,22 @@
 				62E3E7E52A2A6F0700043401 /* PandaHUDMode.swift */,
 			);
 			path = "New Group";
+			sourceTree = "<group>";
+		};
+		6253AED32A2F82A2002361BA /* Content Views */ = {
+			isa = PBXGroup;
+			children = (
+				6253AED42A2F82C0002361BA /* SuccessView.swift */,
+				6253AED82A2F82FA002361BA /* PandaHUDLoadingView.swift */,
+				6253AEDE2A2F839C002361BA /* PandaHUDInfoView.swift */,
+				6253AEDA2A2F8309002361BA /* PandaHUDProgressView.swift */,
+				6253AEE02A2F83A6002361BA /* PandaHUDToastView.swift */,
+				6253AEE22A2F83F2002361BA /* PandaHUDWidgeBaseView.swift */,
+				6253AEDC2A2F8319002361BA /* PandaHUDTextView.swift */,
+				6253AED62A2F82CB002361BA /* PandaHUDErrorView.swift */,
+				6253AEE42A2F8481002361BA /* PDHUD.swift */,
+			);
+			path = "Content Views";
 			sourceTree = "<group>";
 		};
 		62E3E7582A2A6BED00043401 = {
@@ -307,13 +342,22 @@
 			files = (
 				62E3E7ED2A2A6F0700043401 /* PandaHUDStyle.swift in Sources */,
 				62E3E7EE2A2A6F0700043401 /* PandaHUDMaskView.swift in Sources */,
+				6253AEDF2A2F839C002361BA /* PandaHUDInfoView.swift in Sources */,
+				6253AED52A2F82C0002361BA /* SuccessView.swift in Sources */,
 				62E3E7EA2A2A6F0700043401 /* PandaHUD1.swift in Sources */,
+				6253AEDD2A2F8319002361BA /* PandaHUDTextView.swift in Sources */,
 				62E3E7EB2A2A6F0700043401 /* PandaHUDMode.swift in Sources */,
 				6253AED22A2E2A4C002361BA /* PandaHUDData.swift in Sources */,
+				6253AED92A2F82FA002361BA /* PandaHUDLoadingView.swift in Sources */,
 				6253AECC2A2E2332002361BA /* PandaHUD.swift in Sources */,
 				6253AED02A2E266E002361BA /* PandaHUDView.swift in Sources */,
 				62E3E7EC2A2A6F0700043401 /* PandaHUDAnimationView.swift in Sources */,
+				6253AEDB2A2F8309002361BA /* PandaHUDProgressView.swift in Sources */,
+				6253AEE52A2F8481002361BA /* PDHUD.swift in Sources */,
+				6253AEE32A2F83F2002361BA /* PandaHUDWidgeBaseView.swift in Sources */,
+				6253AEE12A2F83A6002361BA /* PandaHUDToastView.swift in Sources */,
 				62E3E7E92A2A6F0700043401 /* PandaHUDView1.swift in Sources */,
+				6253AED72A2F82CB002361BA /* PandaHUDErrorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

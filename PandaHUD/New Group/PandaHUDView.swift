@@ -12,6 +12,9 @@ public class PandaHUDView: UIView {
     private var style: PandaHUDStyle?
     internal var data = PandaHUDData()
 
+    /// 遮罩渐变图层
+    var maskGradientLayer: CAGradientLayer?
+
     override init(frame: CGRect = .zero) {
         super.init(frame: frame)
     }
@@ -49,7 +52,7 @@ public extension PandaHUDView {
     }
 }
 
-extension PandaHUD {
+extension PandaHUDView {
     /// 设置显示样式
     func prepareUI() {
         // 遮罩
