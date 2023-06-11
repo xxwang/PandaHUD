@@ -11,6 +11,7 @@
 		6223BB682A336CC700422CE1 /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6223BB672A336CC700422CE1 /* ContainerView.swift */; };
 		6223BB6A2A336D5600422CE1 /* FrameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6223BB692A336D5600422CE1 /* FrameView.swift */; };
 		623965C02A2A739600B1ACD2 /* Panda in Frameworks */ = {isa = PBXBuildFile; productRef = 623965BF2A2A739600B1ACD2 /* Panda */; };
+		629C2A9B2A34E03F00901D78 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629C2A9A2A34E03F00901D78 /* ContentView.swift */; };
 		62E3E7A72A2A6E7A00043401 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E3E7A62A2A6E7A00043401 /* AppDelegate.swift */; };
 		62E3E7A92A2A6E7A00043401 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E3E7A82A2A6E7A00043401 /* SceneDelegate.swift */; };
 		62E3E7AB2A2A6E7A00043401 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E3E7AA2A2A6E7A00043401 /* ViewController.swift */; };
@@ -50,6 +51,7 @@
 		6223BB652A336B5300422CE1 /* PandaHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandaHUD.swift; sourceTree = "<group>"; };
 		6223BB672A336CC700422CE1 /* ContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
 		6223BB692A336D5600422CE1 /* FrameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameView.swift; sourceTree = "<group>"; };
+		629C2A9A2A34E03F00901D78 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		62E3E7A42A2A6E7A00043401 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62E3E7A62A2A6E7A00043401 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		62E3E7A82A2A6E7A00043401 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				62E3E7C12A2A6EAC00043401 /* PandaHUD.h */,
 				6223BB652A336B5300422CE1 /* PandaHUD.swift */,
 				6223BB672A336CC700422CE1 /* ContainerView.swift */,
+				629C2A9A2A34E03F00901D78 /* ContentView.swift */,
 				6223BB692A336D5600422CE1 /* FrameView.swift */,
 			);
 			path = PandaHUD;
@@ -281,6 +284,7 @@
 			files = (
 				6223BB682A336CC700422CE1 /* ContainerView.swift in Sources */,
 				6223BB6A2A336D5600422CE1 /* FrameView.swift in Sources */,
+				629C2A9B2A34E03F00901D78 /* ContentView.swift in Sources */,
 				6223BB662A336B5300422CE1 /* PandaHUD.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
